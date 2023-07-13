@@ -46,6 +46,7 @@ export function Map() {
               maxWidth={1000}
               maxHeight={1000}
               css={css`
+                max-width: 95dvw;
                 @media screen and (max-width: 900px) {
                   min-width: 85dvw;
                 }
@@ -92,3 +93,5 @@ export function Map() {
     </div>
   );
 }
+
+export default Map;
