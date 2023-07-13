@@ -1,9 +1,8 @@
 /* Components */
-import { Map } from "@/app/components/Map/Map";
-//@ts-ignore
+import { ArtList } from "@/app/components/ArtList";
 
 export default function IndexPage() {
-  return <Map />;
+  return <ArtList />;
 }
 
 export const metadata = {
