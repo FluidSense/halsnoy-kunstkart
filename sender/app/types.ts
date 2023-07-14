@@ -5,13 +5,17 @@ export type Art = {
   };
   description: any[];
   title: string;
-  image: {
-    url: string;
-    lqip: string;
-    dimensions: {
-      width: number;
-      aspectRatio: number;
-      height: number;
-    };
+  image: SanityImage;
+  author?: string;
+  additionalImages?: SanityImage[];
+};
+
+export type SanityImage = {
+  url: string;
+  lqip: string;
+  dimensions: {
+    width: number;
+    aspectRatio: number;
+    height: number;
   };
 };

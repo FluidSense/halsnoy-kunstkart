@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 "use client";
 
-import { Art } from "@/app/types";
+import { Art, SanityImage } from "@/app/types";
 import { css } from "@emotion/react";
 import { PortableText } from "@portabletext/react";
 import { Marker, Popup } from "react-leaflet";
@@ -43,43 +43,62 @@ export default function ArtPopup(art: Art) {
         open={imageGalleryIsOpen}
         setOpen={setImageGalleryIsOpen}
         slides={[
-          {
-            src: art.image.url,
-            blurDataURL: art.image.lqip,
-            width: art.image.dimensions.width,
-            height: art.image.dimensions.height,
-            srcSet: [
-              {
-                src: loader({ src: art.image.url, width: 320 }),
-                width: 320,
-                height: Math.floor(320 / art.image.dimensions.aspectRatio),
-              },
-              {
-                src: loader({ src: art.image.url, width: 640 }),
-                width: 640,
-                height: Math.floor(640 / art.image.dimensions.aspectRatio),
-              },
-              {
-                src: loader({ src: art.image.url, width: 1200 }),
-                width: 1200,
-                height: Math.floor(1200 / art.image.dimensions.aspectRatio),
-              },
-              {
-                src: loader({ src: art.image.url, width: 2048 }),
-                width: 2048,
-                height: Math.floor(2048 / art.image.dimensions.aspectRatio),
-              },
-              {
-                src: loader({ src: art.image.url, width: 3840 }),
-                width: 3840,
-                height: Math.floor(3840 / art.image.dimensions.aspectRatio),
-              },
-            ],
-          },
+          imageToSlide(art.image),
+          ...(art.additionalImages ?? []).map((image) => imageToSlide(image)),
         ]}
       />
     </>
   );
+}
+
+function imageToSlide(image: SanityImage) {
+  return {
+    src: image.url,
+    blurDataURL: image.lqip,
+    width: image.dimensions.width,
+    height: image.dimensions.height,
+    srcSet: imageToSrcSet({
+      url: image.url,
+      aspectRatio: image.dimensions.aspectRatio,
+    }),
+  };
+}
+
+function imageToSrcSet({
+  url,
+  aspectRatio,
+}: {
+  url: string;
+  aspectRatio: number;
+}) {
+  const srcSetArray = [
+    {
+      src: loader({ src: url, width: 320 }),
+      width: 320,
+      height: Math.floor(320 / aspectRatio),
+    },
+    {
+      src: loader({ src: url, width: 640 }),
+      width: 640,
+      height: Math.floor(640 / aspectRatio),
+    },
+    {
+      src: loader({ src: url, width: 1200 }),
+      width: 1200,
+      height: Math.floor(1200 / aspectRatio),
+    },
+    {
+      src: loader({ src: url, width: 2048 }),
+      width: 2048,
+      height: Math.floor(2048 / aspectRatio),
+    },
+    {
+      src: loader({ src: url, width: 3840 }),
+      width: 3840,
+      height: Math.floor(3840 / aspectRatio),
+    },
+  ];
+  return srcSetArray;
 }
 
 function GridWrapper(props: PropsWithChildren) {
