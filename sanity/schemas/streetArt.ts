@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export default defineType({
   name: 'streetArt',
@@ -27,6 +27,17 @@ export default defineType({
       name: 'image',
       title: 'Bilde',
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      type: 'string',
+      name: 'artist',
+      title: 'Kunstner',
+    }),
+    defineField({
+      type: 'array',
+      name: 'additionalImages',
+      title: 'Andre bilder',
+      of: [defineArrayMember({type: 'image'})],
     }),
   ],
 })
