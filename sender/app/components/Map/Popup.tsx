@@ -29,9 +29,11 @@ export default function ArtPopup(art: Art) {
               css={css`
                 position: relative;
                 height: 100%;
+                cursor: pointer;
               `}
             >
               <Image art={art} onClick={() => setImageGalleryIsOpen(true)} />
+              <FullscreenIcon />
             </div>
             <TextContent {...art} />
           </GridWrapper>
@@ -79,6 +81,38 @@ function TextContent(art: Art) {
         {art.title}
       </h2>
       <PortableText value={art.description} />
+    </div>
+  );
+}
+
+function FullscreenIcon() {
+  return (
+    <div
+      css={css`
+        background-color: rgba(0, 0, 0, 0.3);
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        padding: 0.5em;
+        border-radius: 5px;
+        line-height: 0;
+        pointer-events: none;
+      `}
+    >
+      <svg
+        stroke="white"
+        fill="white"
+        stroke-width="0"
+        viewBox="0 0 16 16"
+        height="1.5em"
+        width="1.5em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"
+        ></path>
+      </svg>
     </div>
   );
 }
