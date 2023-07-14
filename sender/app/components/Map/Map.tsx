@@ -5,6 +5,7 @@ import { css } from "@emotion/react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { useEffect, useState } from "react";
 import Popup from "./Popup";
+import { streetArtFont } from "../streetArtFont";
 
 export function Map() {
   const [arts, setArts] = useState<Art[]>([]);
@@ -16,7 +17,20 @@ export function Map() {
     }
     getArts();
   }, []);
-  if (arts.length === 0) return <></>;
+  if (arts.length === 0)
+    return (
+      <main
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        <h1 className={streetArtFont.className}>Laster inn</h1>
+      </main>
+    );
   return (
     <div
       css={css`
