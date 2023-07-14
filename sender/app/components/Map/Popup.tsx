@@ -42,7 +42,14 @@ export default function ArtPopup(art: Art) {
       <LightBox
         open={imageGalleryIsOpen}
         setOpen={setImageGalleryIsOpen}
-        slides={[{ src: art.image.url }]}
+        slides={[
+          {
+            src: art.image.url,
+            blurDataURL: art.image.lqip,
+            width: art.dimensions.width,
+            height: art.dimensions.height,
+          },
+        ]}
       />
     </>
   );

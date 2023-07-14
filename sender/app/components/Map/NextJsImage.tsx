@@ -15,8 +15,14 @@ function isNextJsImage(slide: Slide) {
   );
 }
 
+export type NextImageCompatibleSlide = Omit<Slide, "width" | "height"> & {
+  blurDataURL?: string;
+  height: number;
+  width: number;
+};
+
 type Props = {
-  slide: Slide;
+  slide: NextImageCompatibleSlide;
   rect: {
     height: number;
     width: number;

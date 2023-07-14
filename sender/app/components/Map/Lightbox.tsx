@@ -1,13 +1,13 @@
 import ReactLightbox, { SlideImage } from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 
-import NextJsImage from "./NextJsImage";
+import NextJsImage, { NextImageCompatibleSlide } from "./NextJsImage";
 import { Dispatch, SetStateAction } from "react";
 
 type Props = {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  slides: SlideImage[];
+  slides: NextImageCompatibleSlide[];
 };
 
 export default function LightBox({ open, setOpen, slides }: Props) {
@@ -16,6 +16,7 @@ export default function LightBox({ open, setOpen, slides }: Props) {
       open={open}
       close={() => setOpen(false)}
       slides={slides}
+      //@ts-ignore
       render={{ slide: NextJsImage }}
     />
   );

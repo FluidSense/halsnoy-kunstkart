@@ -9,4 +9,9 @@ export type Art = {
     url: string;
     lqip: string;
   };
+  dimensions: {
+    width: number;
+    aspectRatio: number;
+    height: number;
+  };
 };
