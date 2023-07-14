@@ -2,12 +2,19 @@
 import NextImage from "next/image";
 import { Art } from "../types";
 
-export function Image(art: Art) {
+type Props = {
+  art: Art;
+  onClick?: () => void;
+};
+
+export function Image(props: Props) {
+  const { art, onClick } = props;
   return (
     <NextImage
       src={art.image.url}
       alt={art.title}
       fill={true}
+      onClick={onClick}
       style={{
         objectFit: "cover",
         borderBottomLeftRadius: "5px",

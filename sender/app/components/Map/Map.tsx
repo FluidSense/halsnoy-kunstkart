@@ -37,7 +37,7 @@ export function Map() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {arts.map((art) => (
-          <Popup {...art} />
+          <Popup {...art} key={art.title} />
         ))}
       </MapContainer>
     </div>

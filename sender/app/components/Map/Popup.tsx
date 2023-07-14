@@ -6,34 +6,43 @@ import { css } from "@emotion/react";
 import { PortableText } from "@portabletext/react";
 import { Marker, Popup } from "react-leaflet";
 import { Image } from "../Image";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useState } from "react";
+import LightBox from "./Lightbox";
 
 export default function ArtPopup(art: Art) {
+  const [imageGalleryIsOpen, setImageGalleryIsOpen] = useState(false);
   return (
-    <Marker position={[art.position.lat, art.position.lng]} key={art.title}>
-      <Popup
-        maxWidth={1000}
-        maxHeight={1000}
-        css={css`
-          max-width: 95dvw;
-          @media screen and (max-width: 900px) {
-            min-width: 85dvw;
-          }
-        `}
-      >
-        <GridWrapper>
-          <div
-            css={css`
-              position: relative;
-              height: 100%;
-            `}
-          >
-            <Image {...art} />
-          </div>
-          <TextContent {...art} />
-        </GridWrapper>
-      </Popup>
-    </Marker>
+    <>
+      <Marker position={[art.position.lat, art.position.lng]}>
+        <Popup
+          maxWidth={1000}
+          maxHeight={1000}
+          css={css`
+            max-width: 95dvw;
+            @media screen and (max-width: 900px) {
+              min-width: 85dvw;
+            }
+          `}
+        >
+          <GridWrapper>
+            <div
+              css={css`
+                position: relative;
+                height: 100%;
+              `}
+            >
+              <Image art={art} onClick={() => setImageGalleryIsOpen(true)} />
+            </div>
+            <TextContent {...art} />
+          </GridWrapper>
+        </Popup>
+      </Marker>
+      <LightBox
+        open={imageGalleryIsOpen}
+        setOpen={setImageGalleryIsOpen}
+        slides={[{ src: art.image.url }]}
+      />
+    </>
   );
 }
 
