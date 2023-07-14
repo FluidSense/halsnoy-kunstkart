@@ -46,8 +46,8 @@ export default function ArtPopup(art: Art) {
           {
             src: art.image.url,
             blurDataURL: art.image.lqip,
-            width: art.dimensions.width,
-            height: art.dimensions.height,
+            width: art.image.dimensions.width,
+            height: art.image.dimensions.height,
           },
         ]}
       />
