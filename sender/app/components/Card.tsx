@@ -26,7 +26,7 @@ export function ArtCard(art: Art) {
           position: relative;
         `}
       >
-        <Image {...art} />
+        <Image art={art} />
       </div>
       <div
         css={css`
