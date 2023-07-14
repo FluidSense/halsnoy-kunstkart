@@ -2,10 +2,9 @@
 "use client";
 import { Art } from "@/app/types";
 import { css } from "@emotion/react";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 import { useEffect, useState } from "react";
-import { Image } from "../Image";
-import { PortableText } from "@portabletext/react";
+import Popup from "./Popup";
 
 export function Map() {
   const [arts, setArts] = useState<Art[]>([]);
@@ -38,56 +37,7 @@ export function Map() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {arts.map((art) => (
-          <Marker
-            position={[art.position.lat, art.position.lng]}
-            key={art.title}
-          >
-            <Popup
-              maxWidth={1000}
-              maxHeight={1000}
-              css={css`
-                max-width: 95dvw;
-                @media screen and (max-width: 900px) {
-                  min-width: 85dvw;
-                }
-              `}
-            >
-              <div
-                css={css`
-                  min-width: 30dvw;
-                  min-height: 30dvh;
-                  display: grid;
-                  grid-template-columns: 3fr 3fr;
-                  @media screen and (max-width: 900px) {
-                    min-width: 85dvw;
-                  }
-                `}
-              >
-                <div
-                  css={css`
-                    position: relative;
-                    height: 100%;
-                  `}
-                >
-                  <Image {...art} />
-                </div>
-                <div
-                  css={css`
-                    margin-left: 1rem;
-                  `}
-                >
-                  <h2
-                    css={css`
-                      margin-top: 0;
-                    `}
-                  >
-                    {art.title}
-                  </h2>
-                  <PortableText value={art.description} />
-                </div>
-              </div>
-            </Popup>
-          </Marker>
+          <Popup {...art} />
         ))}
       </MapContainer>
     </div>
