@@ -17,7 +17,8 @@ export async function fetchArts(): Promise<Art[]> {
   const query =
     '*[_type == "streetArt"]{title, position, description, "image": image.asset -> {"lqip": metadata.lqip, url}}';
   const result = await fetch(
-    `https://ijubg5pm.api.sanity.io/v2023-07-11/data/query/production?query=${query}`
+    `https://ijubg5pm.api.sanity.io/v2023-07-11/data/query/production?query=${query}`,
+    { next: { revalidate: 30000 } }
   );
   const json = await result.json();
   return json.result;
