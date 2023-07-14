@@ -1,7 +1,4 @@
-import localFont from "next/font/local";
-
-// Font files can be colocated inside of `pages`
-export const streetArtFont = localFont({ src: "./AreaStencil.ttf" });
+import { streetArtFont } from "../components/streetArtFont";
 
 export default function IndexPage() {
   return (
