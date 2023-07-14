@@ -1,4 +1,4 @@
-import ReactLightbox, { SlideImage } from "yet-another-react-lightbox";
+import ReactLightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 
 import NextJsImage, { NextImageCompatibleSlide } from "./NextJsImage";
@@ -18,6 +18,7 @@ export default function LightBox({ open, setOpen, slides }: Props) {
       slides={slides}
       //@ts-ignore
       render={{ slide: NextJsImage }}
+      carousel={{ finite: true }}
     />
   );
 }

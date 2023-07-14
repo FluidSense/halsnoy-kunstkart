@@ -27,7 +27,7 @@ export function Image(props: Props) {
   );
 }
 
-function loader({
+export function loader({
   src,
   width,
   quality,
