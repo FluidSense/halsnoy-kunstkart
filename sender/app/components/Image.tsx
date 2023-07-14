@@ -1,6 +1,7 @@
 "use client";
 import NextImage from "next/image";
 import { Art } from "../types";
+import { urlFor } from "@/lib/sanity/utils";
 
 type Props = {
   art: Art;
@@ -36,6 +37,7 @@ export function loader({
   width: number;
   quality?: number;
 }) {
-  const maybeQuality = quality ? `&q=${quality}` : "";
-  return `${src}?w=${width}${maybeQuality}`;
+  const base = urlFor(src).width(width);
+  const url = quality ? base.quality(quality) : base;
+  return url.url();
 }

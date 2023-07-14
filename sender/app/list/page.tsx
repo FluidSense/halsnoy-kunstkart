@@ -1,5 +1,5 @@
 /* Components */
-import { ArtList } from "@/app/components/ArtList";
+import { ArtList } from "@/app/components/ListView/ArtList";
 
 export default function IndexPage() {
   return <ArtList />;

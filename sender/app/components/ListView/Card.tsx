@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 "use client";
 import { Art } from "@/app/types";
-import { Image } from "../components/Image";
+import { Image } from "@/app/components/Image";
 import { css } from "@emotion/react";
 
 export function ArtCard(art: Art) {

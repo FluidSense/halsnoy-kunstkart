@@ -1,5 +1,5 @@
 /* Core */
-import { fetchArts } from "@/app/components/ArtList";
+import { fetchArts } from "@/app/components/ListView/ArtList";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request, res: Response) {
